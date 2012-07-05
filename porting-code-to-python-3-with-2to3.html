@@ -78,23 +78,23 @@
 <li>Unicode raw strings (in which Python does not auto-escape backslashes) are converted to raw strings. In Python 3, raw strings are always Unicode.
 </ol>
 
-<h2 id=unicode><code>unicode()</code> global function</h2>
+<h2 id=unicode>A função global <code>unicode()</code></h2>
 
-<p>Python 2 had two global functions to coerce objects into strings: <code>unicode()</code> to coerce them into Unicode strings, and <code>str()</code> to coerce them into non-Unicode strings. Python 3 has only one string type, <a href=strings.html#divingin>Unicode strings</a>, so the <code>str()</code> function is all you need. (The <code>unicode()</code> function no longer exists.)
+<p>Python 2 possui duas funções globais para transformar objetos em strings: <code>unicode()</code> para transformá-los em strings Unicode, e <code>str()</code> para transformá-los em strings não-Unicode. Python 3 possui apenas um tipo de string, <a href=strings.html#divingin>string Unicode</a>, portanto a função <code>str()</code> é tudo que você precisa. (A função <code>unicode()</code> não existe no Python 3.)
 
 <table>
-<tr><th>Notes
+<tr><th>Notas
 <th>Python 2
 <th>Python 3
 <tr><th>
-<td><code class=pp>unicode(anything)</code>
-<td><code class=pp>str(anything)</code>
+<td><code class=pp>unicode(alguma_coisa)</code>
+<td><code class=pp>str(alguma_coisa)</code>
 </table>
 
-<h2 id=long><code>long</code> data type</h2>
+<h2 id=long>o tipo <code>long</code></h2>
 
-<p>Python 2 had separate <code>int</code> and <code><dfn>long</dfn></code> types for non-floating-point numbers. An <code>int</code> could not be any larger than <a href=#renames><code>sys.maxint</code></a>, which varied by platform. Longs were defined by appending an <code>L</code> to the end of the number, and they could be, well, longer than ints. In Python 3, <a href=native-datatypes.html#numbers>there is only one integer type</a>, called <code>int</code>, which mostly behaves like the <code>long</code> type in Python 2. Since there are no longer two types, there is no need for special syntax to distinguish them.
-<p>Further reading: <a href=http://www.python.org/dev/peps/pep-0237/><abbr>PEP</abbr> 237: Unifying Long Integers and Integers</a>.
+<p>Python 2 possui diferentes tipos (<code>int</code> e <code><dfn>long</dfn></code>) para números não-ponto-flutuante. Um <code>int</code> não pode ser maior que <a href=#renames><code>sys.maxint</code></a>, o queal varia dependendo da plataforma. Longs são definidos adicionando um <code>L</code> ao final do número, que pode ser, digamos, maiores que inteiros. No Python 3, <a href=native-datatypes.html#numbers>existe apenas um tipo de inteiro</a>, chamado <code>int</code>, que basicamente se comporta como um <code>long</code> do Python 2. Uma vez que não há mais dois tipos, não existe mais uma sintaxe especial para diferenciá-los.
+<p>Leitura adicional: <a href=http://www.python.org/dev/peps/pep-0237/><abbr>PEP</abbr> 237: Unifying Long Integers and Integers</a>.
 
 <table>
 <tr><th>Notes
@@ -118,16 +118,16 @@
 </table>
 
 <ol>
-<li>Base 10 long integer literals become base 10 integer literals.
-<li>Base 16 long integer literals become base 16 integer literals.
-<li>In Python 3, the old <code>long()</code> function no longer exists, since longs don&#8217;t exist. To coerce a variable to an integer, use the <code>int()</code> function.
-<li>To check whether a variable is an integer, get its type and compare it to <code>int</code>, not <code>long</code>.
-<li>You can also use the <code>isinstance()</code> function to check data types; again, use <code>int</code>, not <code>long</code>, to check for integers.
+<li>Literais inteiros do longos de base 10 tornam-se literais inteiros de base 10.
+<li>Literais inteiros longos de base 16 tornam-se literais inteiros de base 16.
+<li>No Python 3, a função <code>long()</code> não existe mais, uma vez que o tipo long não existe. Para converter uma variável para inteiro, use use a função <code>int()</code>.
+<li>Para checar se uma variável é um inteiro, compare seu tipo à um <code>int</code>, não à um <code>long</code>.
+<li>Você pode também utilizar o função <code>isinstance()</code> para checar o tipo da variável; novamente, use <code>int</code>, e não <code>long</code>, para checar se uma variável é um inteiro.
 </ol>
 
-<h2 id=ne>&lt;> comparison</h2>
+<h2 id=ne>&lt;> comparações</h2>
 
-<p>Python 2 supported <code>&lt;></code> as a synonym for <code>!=</code>, the not-equals comparison operator. Python 3 supports the <code>!=</code> operator, but not <code>&lt;></code>.
+<p>Python 2 suporta <code>&lt;></code> como um sinônimo de <code>!=</code> como operador de desigualdade. Python 3 suporta o operador <code>!=</code>, porém não mais o <code>&lt;></code>.
 
 <table>
 <tr><th>Notes
@@ -142,13 +142,13 @@
 </table>
 
 <ol>
-<li>A simple comparison.
-<li>A more complex comparison between three values.
+<li>Uma simples comparação.
+<li>Uma comparação mais complexa entre três valores.
 </ol>
 
-<h2 id=has_key><code>has_key()</code> dictionary method</h2>
+<h2 id=has_key>O método <code>has_key()</code> de dicionários</h2>
 
-<p>In Python 2, dictionaries had a <code><dfn>has_key</dfn>()</code> method to test whether the dictionary had a certain key. In Python 3, this method no longer exists. Instead, you need to use <a href=native-datatypes.html#mixed-value-dictionaries>the <code>in</code> operator</a>.
+<p>No Python 2, dicionários possuem o método <code><dfn>has_key</dfn>()</code> para testar se o dicionário possui uma determinada chave. No Python 3 este método não existe mais. No seu lugar você deve usar o operador <a href=native-datatypes.html#mixed-value-dictionaries>the <code>in</code></a>.
 
 <table>
 <tr><th>Notes
@@ -172,16 +172,16 @@
 </table>
 
 <ol>
-<li>The simplest form.
-<li>The <code>in</code> operator takes precedence over the <code>or</code> operator, so there is no need for parentheses around <code>x in a_dictionary</code> or around <code>y in a_dictionary</code>.
-<li>On the other hand, you <em>do</em> need parentheses around <code>x or y</code> here, for the same reason&nbsp;&mdash;&nbsp;<code>in</code> takes precedence over <code>or</code>. (Note: this code is completely different from the previous line. Python interprets <code>x or y</code> first, which results in either <var>x</var> (if <var>x</var> is <a href=native-datatypes.html#booleans>true in a boolean context</a>) or <var>y</var>. Then it takes that singular value and checks whether it is a key in <var>a_dictionary</var>.)
-<li>The <code>+</code> operator takes precedence over the <code>in</code> operator, so this form technically doesn&#8217;t need parentheses around <code>x + y</code>, but <code>2to3</code> includes them anyway.
-<li>This form definitely needs parentheses around <code>y in a_dictionary</code>, since the <code>+</code> operator takes precedence over the <code>in</code> operator.
+<li>A forma mais simples.
+<li>O operador <code>in</code> tem precedência sobre o operador <code>or</code> operator, portanto não há a necessidade de se utilizar parêntesis em <code>x in a_dictionary</code> ou em <code>y in a_dictionary</code>.
+<li>Por outro lado, você <em>precisa</em> colocar parêntesis em <code>x or y</code> neste caso pelas mesmas razões&nbsp;&mdash;&nbsp;<code>in</code> têm precedência sobre <code>or</code>. (Nota: este código é completamente diferente do código da linha anterior. O Python interpreta <code>x or y</code> primeiro, cujo resultado é ou <var>x</var> (se <var>x</var> for <a href=native-datatypes.html#booleans>true no contexto de lógica booleana</a>) ou <var>y</var>. Por fim o interpretador toma este valor e verifica se ele é uma chave válida em <var>a_dictionary</var>.)
+<li>O operador <code>+</code> têm precedência sobre o operador <code>in</code>, assim esta forma tecnicamente não necessita de parêntesis em <code>x + y</code>, porém o script <code>2to3</code> os insere de qualquer maneira.
+<li>Esta forma definitivamente precisa de parêntesis em <code>y in a_dictionary</code>, uma vez que o operador <code>+</code> têm precedência sobre o operador <code>in</code>.
 </ol>
 
-<h2 id=dict>Dictionary methods that return lists</h2>
+<h2 id=dict>Métodos de dicionários que retornam listas</h2>
 
-<p>In Python 2, many dictionary methods returned lists. The most frequently used methods were <code><dfn>keys</dfn>()</code>, <code><dfn>items</dfn>()</code>, and <code><dfn>values</dfn>()</code>. In Python 3, all of these methods return dynamic <dfn>views</dfn>. In some contexts, this is not a problem. If the method&#8217;s return value is immediately passed to another function that iterates through the entire sequence, it makes no difference whether the actual type is a list or a view. In other contexts, it matters a great deal. If you were expecting a complete list with individually addressable elements, your code will choke, because views do not support indexing.
+<p>No Python 2, existem diversos métodos de dicionários que retornam listas. Os mais frequentemente usados são os métodos <code><dfn>keys</dfn>()</code>, <code><dfn>items</dfn>()</code>, e <code><dfn>values</dfn>()</code>. No Python 3, todos estes métodos retornam <dfn>views</dfn> dinâmicas. Em determinados contextos isto não é um problema. Se o valor retornado pelo método for  imediatamente parssado para outra função que itera sobre esta sequência, não faz diferença se o tipo é uma lista ou uma view. Porém, em outros contextos isto não é necessariamente uma verdade. Se você estiver esperando uma lista completa com elementos individualmente endereçáveis pode ser um problema, porque uma view não suporta indexação.
 
 <table>
 <tr><th>Notes
@@ -201,13 +201,13 @@
 <td><code class=pp>[i for i in a_dictionary.keys()]</code>
 <tr><th>&#x2464;
 <td><code class=pp>min(a_dictionary.keys())</code>
-<td><i>no change</i>
+<td><i>não há mudanças</i>
 </table>
 
 <ol>
-<li><code>2to3</code> errs on the side of safety, converting the return value from <code>keys()</code> to a static list with the <code>list()</code> function. This will always work, but it will be less efficient than using a view. You should examine the converted code to see if a list is absolutely necessary, or if a view would do.
-<li>Another view-to-list conversion, with the <code>items()</code> method. <code>2to3</code> will do the same thing with the <code>values()</code> method.
-<li>Python 3 does not support the <code>iterkeys()</code> method anymore. Use <code>keys()</code>, and if necessary, convert the view to an iterator with the <code>iter()</code> function.
+<li><code>2to3</code> peca pelo excesso na segurança, convertendo o valor retornado do método <code>keys()</code> para uma lista estática através da função <code>list()</code>. Isto funcionará em todos os casos, porém será menos eficiente do que utilizar uma view. Você deveria examinar o código convertido e verificar se a lista é realmente necessária, ou se uma view seria o suficiente no caso.
+<li>Outro caso de conversão de view para lista, usando o método <code>items()</code>. <code>2to3</code> fará a mesma coisa com o método <code>values()</code>.
+<li>Python 3 não suporta o método <code>iterkeys()</code> mais. Use o método <code>keys()</code>, e se necessário, converta a view para um iterador catravés da função <code>iter()</code>.
 <li><code>2to3</code> recognizes when the <code>iterkeys()</code> method is used inside a list comprehension, and converts it to the <code>keys()</code> method (without wrapping it in an extra call to <code>iter()</code>). This works because views are iterable.
 <li><code>2to3</code> recognizes that the <code>keys()</code> method is immediately passed to a function which iterates through an entire sequence, so there is no need to convert the return value to a list first. The <code>min()</code> function will happily iterate through the view instead. This applies to <code>min()</code>, <code>max()</code>, <code>sum()</code>, <code>list()</code>, <code>tuple()</code>, <code>set()</code>, <code>sorted()</code>, <code>any()</code>, and <code>all()</code>.
 </ol>
