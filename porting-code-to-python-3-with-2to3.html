@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
-<title>Porting code to Python 3 with 2to3 - Dive Into Python 3</title>
+<title>Portando códigos para Python 3 usando 2to3 - Dive Into Python 3</title>
 <!--[if IE]><script src=j/html5.js></script><![endif]-->
 <link rel=stylesheet href=dip3.css>
 <style>
@@ -11,22 +11,22 @@
 <body id=appa>
 <form action=http://www.google.com/cse><div><input name=cx type=hidden value=014021643941856155761:l5eihuescdw><input name=ie type=hidden value=UTF-8>&nbsp;<input type=search name=q size=25 placeholder="powered by Google&trade;">&nbsp;<input name=sa type=submit value=Search></div></form>
 <p>You are here: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#porting-code-to-python-3-with-2to3>Dive Into Python 3</a> <span class=u>&#8227;</span>
-<p id=level>Difficulty level: <span class=u title=pro>&#x2666;&#x2666;&#x2666;&#x2666;&#x2666;</span>
-<h1>Porting Code to Python 3 with <code>2to3</code></h1>
+<p id=level>Nível de dificuldade: <span class=u title=pro>&#x2666;&#x2666;&#x2666;&#x2666;&#x2666;</span>
+<h1>Portando códigos para Python 3 usando <code>2to3</code></h1>
 
 <blockquote class=q>
-<p><span class=u>&#x275D;</span> Life is pleasant. Death is peaceful. It&#8217;s the transition that&#8217;s troublesome. <span class=u>&#x275E;</span><br>&mdash; Isaac Asimov (attributed)
+<p><span class=u>&#x275D;</span> A vida é prazerosa. A morte é pacífica. A transição que é problemática. <span class=u>&#x275E;</span><br>&mdash; Isaac Asimov (attributed)
 </blockquote>
 
 <p id=toc>&nbsp;
 
-<h2 id=divingin>Diving In</h2>
+<h2 id=divingin>Mergulhando</h2>
 
-<p class=f>So much has changed between Python 2 and Python 3, there are vanishingly few programs that will run unmodified under both. But don&#8217;t despair! To help with this transition, Python 3 comes with a utility script called <code>2to3</code>, which takes your actual Python 2 source code as input and auto-converts as much as it can to Python 3. <a href=case-study-porting-chardet-to-python-3.html#running2to3>Case study: porting <code>chardet</code> to Python 3</a> describes how to run the <code>2to3</code> script, then shows some things it can&#8217;t fix automatically. This appendix documents what it <em>can</em> fix automatically.
+<p class=f>Muitas coisas mudaram entre Python 2 e Python 3, existem apenas alguns poucos programas que funcionariam sem modificações em ambas as versões. Mas não se desespere! Para lhe ajudar nesta transição, Python 3 v6em com um utilitário chamado <code>2to3</code>, que consome seu código escrito em Python 2 e o converte, na medida do possível, para Python 3. <a href=case-study-porting-chardet-to-python-3.html#running2to3>Caso de estudo: portando <code>chardet</code> para Python 3</a> descrever como utilizar o script <code>2to3</code>, e então mostra algumas coisas que não podem ser portadas automaticamente. Este apêndice trata dos casos que <em>podem</em> ser portadas automaticamente.
 
-<h2 id=print><code>print</code> statement</h2>
+<h2 id=print>A instrução<code>print</code></h2>
 
-<p>In Python 2, <code><dfn>print</dfn></code> was a statement. Whatever you wanted to print simply followed the <code>print</code> keyword. In Python 3, <a href=your-first-python-program.html#divingin><code>print()</code> is a function</a>. Whatever you want to print, pass it to <code>print()</code> like any other function.
+<p>No Python 2, <code><dfn>print</dfn></code> é uma instrução. Qualquer coisa que você desejasse imprimir bastava colocar na frente da instrução <code>print</code>. No Python 3, <a href=your-first-python-program.html#divingin><code>print()</code> é uma função</a>. Quando você desejar imprimir algo, você deve passar este algo para o <code>print()</code> como qualquer outra função.
 
 <table>
 <tr><th>Notes
@@ -50,19 +50,19 @@
 </table>
 
 <ol>
-<li>To print a blank line, call <code>print()</code> without any arguments.
-<li>To print a single value, call <code>print()</code> with one argument.
-<li>To print two values separated by a space, call <code>print()</code> with two arguments.
-<li>This one is a little tricky. In Python 2, if you ended a <code>print</code> statement with a comma, it would print the values separated by spaces, then print a trailing space, then stop without printing a carriage return. (Technically, it&#8217;s a little more complicated than that. The <code>print</code> statement in Python 2 used a now-deprecated attribute called <var>softspace</var>. Instead of printing a space, Python 2 would set <code>sys.stdout.softspace</code> to 1. The space character wasn&#8217;t really printed until something else got printed on the same line. If the next <code>print</code> statement printed a carriage return, <code>sys.stdout.softspace</code> would be set to 0 and the space would never be printed. You probably never noticed the difference unless your application was sensitive to the presence or absence of trailing whitespace in <code>print</code>-generated output.) In Python 3, the way to do this is to pass <code>end=' '</code> as a keyword argument to the <code>print()</code> function. The <code>end</code> argument defaults to <code>'\n'</code> (a carriage return), so overriding it will suppress the carriage return after printing the other arguments.
-<li>In Python 2, you could redirect the output to a pipe&nbsp;&mdash;&nbsp;like <code>sys.stderr</code>&nbsp;&mdash;&nbsp;by using the <code>>>pipe_name</code> syntax. In Python 3, the way to do this is to pass the pipe in the <code>file</code> keyword argument. The <code>file</code> argument defaults to <code>sys.stdout</code> (standard out), so overriding it will output to a different pipe instead.
+<li>Para imprimir uma linha em branco, use <code>print()</code> sem nenhum argumento.
+<li>para imprimir um único valor, use <code>print()</code> com um argumento.
+<li>Para imprimir dois valores separados por um espaço, use <code>print()</code> com dois argumentos.
+<li>Neste caso existe um pequeno truque. No Python 2, se você terminar a instrução <code>print</code> com uma vírgula, isto imprimiria os valores separados por espaços seguido por um caractere de espaço ao final e então interromperia a impressão sem imprimir o caractere de retorno. (Tecnicamente é um pouco mais complicado que isso. A intrução <code>print</code> no Python 2 usava um agora-obsoleto atributo chamado <var>softspace</var>. Invés de imprimir um espaço, Python 2 estabeleceria <code>sys.stdout.softspace</code> para 1. O caractere de espaço não seria realmente impresso até que alguma outra coisa fosse impressa na mesma linha. Se a nova instrução <code>print</code> imprimisse um caractere de retorno, <code>sys.stdout.softspace</code> seria establelecido em 0 e o caractere de espaço nunca seria impresso. Você provavelmente nunca notaria a diferença a menos que sua aplicação fosse sensível a presença ou à ausência do último caractere de espaço na saída gerada pela instrução <code>print</code>.) No Python 3, a maneira de fazer isso é passando o caractere <code>end=' '</code> como argumento para a função <code>print()</code>. O argumento <code>end</code> é, por padrão, <code>'\n'</code> (retorno de carro). Sobreescrevendo este, isto suprimiria o caractere de retorno após imprimir os demais argumentos.
+<li>No Python 2, você pode redirecionar a sua saída para um pipe&nbsp;&mdash;&nbsp;like <code>sys.stderr</code>&nbsp;&mdash;&nbsp;usando a sintaxe <code>>>pipe_name</code>. No Python 3, a maneira de se fazer isto é passando o pipe através do argumento <code>file</code>. O argumento <code>file</code> é, por padrão, <code>sys.stdout</code> (standard out - saída padrão do sistema). Sobreescrevendo-o fará que a saída seja direcionada à um pipe diferente.
 </ol>
 
 <h2 id=unicodeliteral>Unicode string literals</h2>
 
-<p>Python 2 had two string types: <dfn>Unicode</dfn> strings and non-Unicode strings. Python 3 has one string type: <a href=strings.html#divingin>Unicode strings</a>.
+<p>Python 2 possui dois tipos de strings: strings <dfn>Unicode</dfn> e strings não-Unicode strings. Python 3 possui apenas um tipo: <a href=strings.html#divingin>strings Unicode</a>.
 
 <table>
-<tr><th>Notes
+<tr><th>Notas
 <th>Python 2
 <th>Python 3
 <tr><th>&#x2460;
