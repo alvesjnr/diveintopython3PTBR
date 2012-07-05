@@ -208,20 +208,20 @@
 <li><code>2to3</code> peca pelo excesso na segurança, convertendo o valor retornado do método <code>keys()</code> para uma lista estática através da função <code>list()</code>. Isto funcionará em todos os casos, porém será menos eficiente do que utilizar uma view. Você deveria examinar o código convertido e verificar se a lista é realmente necessária, ou se uma view seria o suficiente no caso.
 <li>Outro caso de conversão de view para lista, usando o método <code>items()</code>. <code>2to3</code> fará a mesma coisa com o método <code>values()</code>.
 <li>Python 3 não suporta o método <code>iterkeys()</code> mais. Use o método <code>keys()</code>, e se necessário, converta a view para um iterador catravés da função <code>iter()</code>.
-<li><code>2to3</code> recognizes when the <code>iterkeys()</code> method is used inside a list comprehension, and converts it to the <code>keys()</code> method (without wrapping it in an extra call to <code>iter()</code>). This works because views are iterable.
-<li><code>2to3</code> recognizes that the <code>keys()</code> method is immediately passed to a function which iterates through an entire sequence, so there is no need to convert the return value to a list first. The <code>min()</code> function will happily iterate through the view instead. This applies to <code>min()</code>, <code>max()</code>, <code>sum()</code>, <code>list()</code>, <code>tuple()</code>, <code>set()</code>, <code>sorted()</code>, <code>any()</code>, and <code>all()</code>.
+<li><code>2to3</code> identifica o método <code>iterkeys()</code> é usado dentro de uma list comprehension, e o converte para o método <code>keys()</code> (without wrapping it in an extra call to <code>iter()</code>). Isto funciona pois listas são iteráveis.
+<li><code>2to3</code> identifica que o método <code>keys()</code> é imediatamente passado para uma função que itera sobre toda a sequência, assim não há a necessidade de converter o valor retornado para uma lista. A função <code>min()</code> iterará sobre a view. Isto também se aplica às funções <code>min()</code>, <code>max()</code>, <code>sum()</code>, <code>list()</code>, <code>tuple()</code>, <code>set()</code>, <code>sorted()</code>, <code>any()</code>, e <code>all()</code>.
 </ol>
 
-<h2 id=imports>Modules that have been renamed or reorganized</h2>
+<h2 id=imports>Módulos que foram renomeados e reorganizados</h2>
 
-<p>Several modules in the Python Standard Library have been renamed. Several other modules which are related to each other have been combined or reorganized to make their association more logical.
+<p>Diversos módulos da Python Standard Library foram renomeados. Outros diversos módulos que eram relacionados entre si foram combinados ou reorganizados a fim de deixarem a sua associação mais lógica.
 
 <h3 id=http><code>http</code></h3>
 
-<p>In Python 3, several related <abbr>HTTP</abbr> modules have been combined into a single package, <code>http</code>.
+<p>No Python 3, diversos módulos relacionados à <abbr>HTTP</abbr> foram combinados em um único pacote, <code>http</code>.
 
 <table>
-<tr><th>Notes
+<tr><th>Notas
 <th>Python 2
 <th>Python 3
 <tr><th>&#x2460;
@@ -241,10 +241,10 @@ import <dfn>CGIHttpServer</dfn></code></pre>
 </table>
 
 <ol>
-<li>The <code>http.client</code> module implements a low-level library that can request <abbr>HTTP</abbr> resources and interpret <abbr>HTTP</abbr> responses.
-<li>The <code>http.cookies</code> module provides a Pythonic interface to browser cookies that are sent in a <code>Set-Cookie:</code> <abbr>HTTP</abbr> header.
-<li>The <code>http.cookiejar</code> module manipulates the actual files on disk that popular web browsers use to store cookies.
-<li>The <code>http.server</code> module provides a basic <abbr>HTTP</abbr> server.
+<li>O módulo <code>http.client</code> implementa uma biblioteca de baixo nível que requisita recursos <abbr>HTTP</abbr> e interpreta respostas <abbr>HTTP</abbr>.
+<li>O módulo <code>http.cookies</code> provê uma interface pythonica para manipular cookies que são enviados em um cabeçalho <code>Set-Cookie:</code> <abbr>HTTP</abbr>.
+<li>O módulo <code>http.cookiejar</code> manipula os arquivos em disco que os browsers usam para armazenar os cookies.
+<li>O módulo <code>http.server</code> provê um servidor <abbr>HTTP</abbr> básico.
 </ol>
 
 <h3 id=urllib><code>urllib</code></h3>
